@@ -6,26 +6,45 @@ class Calc extends Component {
   constructor(){
     super();
     this.state = {
-      result: 579,
-      first: 123,
-      second: 456,
-      operator: "+"
+      result: null,
+      first: null,
+      second: null,
+      operator: null
     }
   }
-changeResult(which, value){
-  this.setState({
-    which: value
-  });
-}
+  
+  setFirst(first){
+    this.setState({
+      first: first
+    });
+  }
+
+  setSecond(second){
+    this.setState({
+      second: second
+    });
+  }
+
+  setResult(result){
+    this.setState({
+      result: result
+    });
+  }
+
+  setOperator(operator){
+    this.setState({
+      operator: operator
+    });
+  }
   render(){
     console.log(this.state);
     return(
-      <div className="calc">
-        <Result all={this.state}/>
-        <Buttons all={this.state} changeResult={this.changeResult.bind(this)}/>
+      <div id="calculator">
+      <Result all={this.state}/>
+      <Buttons operator={this.state.operator} setResult={this.setResult.bind(this)} setOperator={this.setOperator.bind(this)} setSecond={this.setSecond.bind(this)} setFirst={this.setFirst.bind(this)}/>
       </div>
-    )
+      )
+    }
   }
-}
 
-export default Calc;
+  export default Calc;
